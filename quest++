@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n, k;
+    cin >> n >> k;
+
+    int arr[k];
+
+    for (int i = 0; i < k; i++) {
+        cin >> arr[i];
+    }
+
+    for (int i = 0; i < k - 1; i++) {
+        for (int j = 0; j < k - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+
+    int vectordiff[k - n + 1];
+
+    for (int i = 0; i <= k - n; i++) {
+        vectordiff[i] = arr[i + n - 1] - arr[i];
+    }
+
+    for (int i = 0; i < k - n; i++) {
+        for (int j = 0; j < k - n - 1 - i; j++) {
+            if (vectordiff[j] > vectordiff[j + 1]) {
+                swap(vectordiff[j], vectordiff[j + 1]);
+            }
+        }
+    }
+
+    cout<< vectordiff[0];
+    
+}
